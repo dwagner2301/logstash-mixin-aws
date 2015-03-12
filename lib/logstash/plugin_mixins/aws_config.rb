@@ -35,10 +35,6 @@ module LogStash::PluginMixins::AwsConfig
     # The AWS Session token for temprory credential
     config :session_token, :validate => :string
 
-    # Should we require (true) or disable (false) using SSL for communicating with the AWS API
-    # The AWS SDK for Ruby defaults to SSL so we preserve that
-    config :use_ssl, :validate => :boolean, :default => true
-
     # URI to proxy server if required
     config :proxy_uri, :validate => :string
 
@@ -72,8 +68,6 @@ module LogStash::PluginMixins::AwsConfig
     end
 
     opts[:proxy_uri] = @proxy_uri if @proxy_uri
-    opts[:use_ssl] = @use_ssl
-
 
     # The AWS SDK for Ruby doesn't know how to make an endpoint hostname from a region
     # for example us-west-1 -> foosvc.us-west-1.amazonaws.com
